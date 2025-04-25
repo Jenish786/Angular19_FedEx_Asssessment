@@ -1,0 +1,82 @@
+<div class="row">
+    <div class="col-md-4 offset-md-4 col-sm-6 offset-sm-3">
+      <div class="card auth">
+        <div class="card-body auth-card">
+          <div class="auth-avatar">
+            <img src="https://pluspng.com/img-png/user-png-icon-account-avatar-human-male-man-men-people-person-download-svg-download-png-edit-icon-512.png" alt="user" class="user-image">
+          </div>
+          <form [formGroup]="registerForm">
+              <div class="form-group field_label">
+                <label for="name">First Name : <span>*</span></label>
+                <input type="text"
+                 formControlName="firstName" 
+                 class="form-control" 
+                 placeholder="First Name" 
+                 [ngClass]="{ 'is-invalid': submitted && f['firstName'].errors }" (keyup)="getFirstName($event)">
+                 <div *ngIf="submitted && f['firstName'].errors" class="invalid-feedback">
+                  <div *ngIf="f['firstName'].errors['required']">
+                    First name is required.
+                  </div>
+                </div>
+              </div>
+              <div class="form-group field_label">
+                <label for="lastName">Last Name : <span>*</span></label>
+                <input type="text" 
+                formControlName="lastName" 
+                class="form-control" 
+                placeholder="Last Name" 
+                [ngClass]="{ 'is-invalid': submitted && f['lastName'].errors }" (keyup)="getLastName($event)">
+                <div *ngIf="submitted && f['lastName'].errors" class="invalid-feedback">
+                  <div *ngIf="f['lastName'].errors['required']">
+                    Last name is required.
+                  </div>
+                </div>
+              </div>
+              <div class="form-group field_label">
+                <label for="lastName">Full Name : {{firstnameVal}} {{lastnameVal}}</label>
+              </div>
+              <div class="form-group field_label">
+                <label for="email">Email : <span>*</span></label>
+                <input type="text" 
+                formControlName="email" 
+                class="form-control" 
+                placeholder="Email" 
+                [ngClass]="{ 'is-invalid': submitted && f['email'].errors }">
+                <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+                  <div *ngIf="f['email'].errors['required']">
+                    Email is required.
+                  </div>
+                  <div *ngIf="f['email'].errors['email']">
+                    Email must be a valid email address
+                  </div>
+                </div>
+              </div>
+              <div class="form-group field_label">
+                <label for="password">Password : <span>*</span></label>
+                <input type="password"
+                formControlName="password" 
+                class="form-control" 
+                placeholder="********" 
+                [ngClass]="{ 'is-invalid': submitted && f['password'].errors }" (keyup)="validatePassword($event)">
+                <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+                  <div *ngIf="f['password'].errors['required']">
+                    Password is required.
+                  </div>
+                </div>
+                <div>
+                  <div class="invalid_password_error">
+                    {{invalidpasswordMsg}}
+                  </div>
+                </div>
+              </div>
+              <div class="text-center">
+                <input type="button" class="btn btn-submit" value="Sign Up" (click)="onSubmit()">
+              </div>
+              <div class="text-center login">
+                Already have an account ? <a routerLink="/login">Login</a> here.
+              </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
