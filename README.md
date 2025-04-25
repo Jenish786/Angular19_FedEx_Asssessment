@@ -2,6 +2,20 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.5.
 
+# Required Softwares:
+
+Node 22.33.1
+
+VS Code
+
+# To run the application do the follwoing:
+
+1) Do git checkout using following URL: https://github.com/Jenish786/Angular19_FedEx_Asssessment.git
+2) run npm install
+2) run ng serve
+
+
+
 ## Development server
 
 To start a local development server, run:
