@@ -29,13 +29,23 @@ export class RegistrationComponent implements OnInit {
     return this.registerForm.controls;
   }
   validatePassword(event: any) {
+    let validatename;
     const passValue = event.target.value;
     const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z]).*$/;
-    if (passValue && passValue.length < 8){
+    const firstname = String(this.registerForm.value.firstName).toLowerCase();
+    const lastname  = String(this.registerForm.value.lastName).toLowerCase();
+    if (firstname || lastname){
+      let password = String(passValue).toLowerCase();
+      validatename = (password.indexOf(firstname) >= 0 || password.indexOf(lastname) >= 0);
+    }
+    if (validatename){
+      this.invalidpasswordMsg = "Password should not contain the user's first or last name";
+      this.registerForm.get('password')?.setErrors({ invalid: true });
+    } else if (passValue && passValue.length < 8){
       this.registerForm.get('password')?.setErrors({ invalid: true });
       this.invalidpasswordMsg = "Password should be a minimum of eight characters long."
     } else if (this.registerForm.get('password')?.value && !passwordPattern.test(this.registerForm.get('password')?.value)) {
-      this.invalidpasswordMsg = "assword must contain at least one uppercase and one lowercase letter";
+      this.invalidpasswordMsg = "password must contain at least one uppercase and one lowercase letter";
       this.registerForm.get('password')?.setErrors({ invalid: true });
     } else {
       this.registerForm.get('password')?.setErrors(null);
